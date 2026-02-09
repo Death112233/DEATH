@@ -11,26 +11,19 @@
     <meta name="keywords" content="Cybersecurity, Bug Bounty, Red Teaming, Security Researcher, Penetration Testing, Exploit Development, Hacker Portfolio, Web Security Tools, DEATH Hacker">
     <meta name="author" content="DEATH">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://death112233.github.io/"> <!-- Replace with your actual GitHub Pages URL -->
+    <link rel="canonical" href="https://death112233.github.io/"> 
     
-    <!-- Google Search Console Verification -->
-    <meta name="google-site-verification" content="GAmBktjMblQnBrOIo3dD1JH9PnVURdr4HC9w6dCWtWo" />
+    <!-- NEW Google Search Console Verification Code -->
+    <meta name="google-site-verification" content="6-57O1--K_U8uQ7_AkQX7lnIGS6GQx3NcC0peHd5TZY" />
 
-    <!-- OPEN GRAPH / FACEBOOK / DISCORD -->
+    <!-- OPEN GRAPH / FACEBOOK -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://death112233.github.io/">
     <meta property="og:title" content="DEATH 💀 | Elite Security Researcher">
-    <meta property="og:description" content="Mastering the digital shadows. Explore advanced research and custom security modules.">
-    <meta property="og:image" content="https://github.com/Death112233.png"> <!-- Uses your GitHub profile pic as preview -->
+    <meta property="og:description" content="Mastering the digital shadows. Research, tools, and exploits.">
+    <meta property="og:image" content="https://github.com/Death112233.png">
 
-    <!-- TWITTER -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://death112233.github.io/">
-    <meta property="twitter:title" content="DEATH 💀 | Elite Security Researcher">
-    <meta property="twitter:description" content="Professional portfolio and 14+ essential security tools hub.">
-    <meta property="twitter:image" content="https://github.com/Death112233.png">
-
-    <!-- STRUCTURED DATA (JSON-LD) - Best for Google SEO -->
+    <!-- STRUCTURED DATA (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -43,7 +36,8 @@
       "knowsAbout": ["Cybersecurity", "Penetration Testing", "Bug Bounty", "Red Teaming", "Exploit Development"],
       "sameAs": [
         "https://github.com/Death112233",
-        "https://t.me/ilovehacking"
+        "https://t.me/ilovehacking",
+        "https://t.me/udemydeath"
       ]
     }
     </script>
@@ -67,8 +61,7 @@
     <style>
         body { background-color: #000; color: #ededed; overflow-x: hidden; }
         .hacking-grid { background-image: radial-gradient(rgba(255, 0, 0, 0.07) 1px, transparent 1px); background-size: 30px 30px; }
-        .glass { background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(14px); border: 1px solid rgba(255, 0, 0, 0.15); }
-        .text-gradient-red { background: linear-gradient(to right, #ff0000, #991b1b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass { background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(16px); border: 1px solid rgba(255, 0, 0, 0.15); }
         ::-webkit-scrollbar { width: 4px; height: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #991b1b; border-radius: 10px; }
@@ -78,6 +71,7 @@
             background: linear-gradient(to bottom, transparent, rgba(255,0,0,0.03), transparent);
             animation: scanline 10s linear infinite; pointer-events: none;
         }
+        .text-gradient-red { background: linear-gradient(to right, #ff0000, #991b1b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body class="font-outfit antialiased hacking-grid scanline">
@@ -95,22 +89,22 @@
             ExternalLink, Coffee, Mail, User, Shield, Info
         } from 'lucide-react';
 
-        // --- All 14 Tools Logic ---
+        // --- All Tools Data ---
         const tools = [
-            { id: 'discount_calc', name: 'Discount Calculator', description: 'Quick pricing deductions for commerce.', category: 'Essentials', icon: Tag, color: 'text-rose-500', bgColor: 'bg-rose-500/10', inputs: [{ id: 'price', label: 'Price', type: 'number', defaultValue: '100' }, { id: 'discount', label: 'Discount %', type: 'number', defaultValue: '25' }], handler: async (p) => { const s = p.price * (p.discount/100); return { final: (p.price - s).toFixed(2), saved: s.toFixed(2) }; } },
-            { id: 'password_gen', name: 'Password Generator', description: 'Generate high-entropy secure passwords.', category: 'Security', icon: Lock, color: 'text-indigo-500', bgColor: 'bg-indigo-500/10', inputs: [{ id: 'length', label: 'Length', type: 'number', defaultValue: '24' }, { id: 'symbols', label: 'Symbols?', type: 'select', defaultValue: 'Yes', options: ['Yes', 'No'] }], handler: async (p) => { let c = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; if(p.symbols === 'Yes') c += "!@#$%^&*()_+~"; let r = ""; for(let i=0; i<p.length; i++) r += c.charAt(Math.floor(Math.random()*c.length)); return { password: r }; } },
-            { id: 'age_calc', name: 'Age Calculator', description: 'Precise chronological calculation.', category: 'Essentials', icon: Calendar, color: 'text-orange-500', bgColor: 'bg-orange-500/10', inputs: [{ id: 'dob', label: 'DOB (YYYY-MM-DD)', type: 'text', defaultValue: '2000-01-01' }], handler: async (p) => { const b = new Date(p.dob); const t = new Date(); let y = t.getFullYear() - b.getFullYear(); return { years: String(y), status: "Calculated" }; } },
-            { id: 'yt_thumb', name: 'YT Thumbnail', description: 'Download high-quality YouTube covers.', category: 'Content', icon: Youtube, color: 'text-red-600', bgColor: 'bg-red-600/10', inputs: [{ id: 'url', label: 'Video URL', type: 'text', defaultValue: 'https://youtube.com/watch?v=dQw4w9WgXcQ' }], handler: async (p) => { const id = p.url.split('v=')[1]?.split('&')[0]; return { imageUrl: `https://img.youtube.com/vi/${id}/maxresdefault.jpg` }; } },
-            { id: 'word_counter', name: 'Word Counter', description: 'In-depth string and character analysis.', category: 'Productivity', icon: FileText, color: 'text-blue-500', bgColor: 'bg-blue-500/10', inputs: [{ id: 'text', label: 'Text', type: 'text', defaultValue: 'DEATH Security Research Node.' }], handler: async (p) => { return { words: p.text.trim().split(/\s+/).length, chars: p.text.length }; } },
-            { id: 'sci_calc', name: 'Scientific Calc', description: 'Evaluate complex mathematical expressions.', category: 'Calculators', icon: Calculator, color: 'text-emerald-500', bgColor: 'bg-emerald-500/10', inputs: [{ id: 'expr', label: 'Expression', type: 'text', defaultValue: 'Math.sqrt(256) * 2' }], handler: async (p) => { return { result: safeMathEval(p.expr) }; } },
-            { id: 'loan_calc', name: 'Loan Calculator', description: 'Monthly payment and interest metrics.', category: 'Calculators', icon: DollarSign, color: 'text-green-500', bgColor: 'bg-green-500/10', inputs: [{ id: 'amount', label: 'Amount', type: 'number', defaultValue: '1000' }, { id: 'rate', label: 'Rate %', type: 'number', defaultValue: '5' }], handler: async (p) => { return { monthly: (p.amount * (p.rate/100) / 12).toFixed(2) }; } },
-            { id: 'bmi_calc', name: 'BMI Calculator', description: 'Health and body mass index tracking.', category: 'Health', icon: Activity, color: 'text-teal-500', bgColor: 'bg-teal-500/10', inputs: [{ id: 'weight', label: 'Weight (kg)', type: 'number', defaultValue: '70' }, { id: 'height', label: 'Height (cm)', type: 'number', defaultValue: '175' }], handler: async (p) => { const h = p.height/100; const b = (p.weight/(h*h)).toFixed(1); return { bmi: b, status: b < 18.5 ? 'Normal-Low' : 'Check Profile' }; } },
-            { id: 'unit_conv', name: 'Unit Converter', description: 'Convert between global metric systems.', category: 'Utilities', icon: ArrowRightLeft, color: 'text-sky-500', bgColor: 'bg-sky-500/10', inputs: [{ id: 'val', label: 'Value', type: 'number', defaultValue: '1' }, { id: 'type', label: 'Type', type: 'select', defaultValue: 'Km to Miles', options: ['Km to Miles', 'Celsius to Fahrenheit'] }], handler: async (p) => { return { result: p.type.includes('Km') ? (p.val * 0.621).toFixed(2) : ((p.val * 9/5) + 32).toFixed(2) }; } },
-            { id: 'weather', name: 'Weather Node', description: 'Real-time global weather via coordinates.', category: 'Utilities', icon: Cloud, color: 'text-slate-400', bgColor: 'bg-slate-400/10', inputs: [{ id: 'lat', label: 'Lat', type: 'number', defaultValue: '51.5' }, { id: 'lon', label: 'Lon', type: 'number', defaultValue: '-0.12' }], handler: async (p) => { const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${p.lat}&longitude=${p.lon}&current_weather=true`); const d = await r.json(); return { temp: d.current_weather.temperature + "°C", wind: d.current_weather.windspeed + "km/h" }; } },
-            { id: 'qr_generator', name: 'QR Code Maker', description: 'Generate QR codes for links and data.', category: 'Utilities', icon: QrCode, color: 'text-white', bgColor: 'bg-white/10', inputs: [{ id: 'data', label: 'Data', type: 'text', defaultValue: 'DEATH_NODE' }], handler: async (p) => { return { imageUrl: `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(p.data)}` }; } },
-            { id: 'ip_info', name: 'IP Lookup', description: 'Detect public IP and geolocation.', category: 'Security', icon: Globe, color: 'text-cyan-500', bgColor: 'bg-cyan-500/10', inputs: [], handler: async () => { const r = await fetch('https://ipapi.co/json/'); return await r.json(); } },
-            { id: 'text_repeater', name: 'Text Repeater', description: 'SMS and message multiplier module.', category: 'Fun', icon: Copy, color: 'text-pink-500', bgColor: 'bg-pink-500/10', inputs: [{ id: 'text', label: 'Msg', type: 'text', defaultValue: 'HACK ' }, { id: 'count', label: 'Count', type: 'number', defaultValue: '10' }], handler: async (p) => { return { result: Array(parseInt(p.count)).fill(p.text).join('') }; } },
-            { id: 'dictionary', name: 'Dictionary', description: 'Semantic English word definitions.', category: 'Education', icon: Book, color: 'text-yellow-500', bgColor: 'bg-yellow-500/10', inputs: [{ id: 'word', label: 'Word', type: 'text', defaultValue: 'Encryption' }], handler: async (p) => { const r = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${p.word}`); const d = await r.json(); return { definition: d[0].meanings[0].definitions[0].definition }; } }
+            { id: 'discount_calc', name: 'Discount Calculator', description: 'Quick pricing deductions.', category: 'Essentials', icon: Tag, color: 'text-rose-500', bgColor: 'bg-rose-500/10', inputs: [{ id: 'price', label: 'Price', type: 'number', defaultValue: '100' }, { id: 'discount', label: 'Discount %', type: 'number', defaultValue: '25' }], handler: async (p) => { const s = p.price * (p.discount/100); return { final: (p.price - s).toFixed(2), saved: s.toFixed(2) }; } },
+            { id: 'password_gen', name: 'Password Generator', description: 'High-entropy secure passwords.', category: 'Security', icon: Lock, color: 'text-indigo-500', bgColor: 'bg-indigo-500/10', inputs: [{ id: 'length', label: 'Length', type: 'number', defaultValue: '24' }, { id: 'symbols', label: 'Symbols?', type: 'select', defaultValue: 'Yes', options: ['Yes', 'No'] }], handler: async (p) => { let c = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; if(p.symbols === 'Yes') c += "!@#$%^&*()_+~"; let r = ""; for(let i=0; i<p.length; i++) r += c.charAt(Math.floor(Math.random()*c.length)); return { password: r }; } },
+            { id: 'age_calc', name: 'Age Calculator', description: 'Chronological lookup.', category: 'Essentials', icon: Calendar, color: 'text-orange-500', bgColor: 'bg-orange-500/10', inputs: [{ id: 'dob', label: 'DOB (YYYY-MM-DD)', type: 'text', defaultValue: '2000-01-01' }], handler: async (p) => { const b = new Date(p.dob); const t = new Date(); let y = t.getFullYear() - b.getFullYear(); return { years: String(y), status: "Calculated" }; } },
+            { id: 'yt_thumb', name: 'YT Thumbnail', description: 'Fetch video covers.', category: 'Content', icon: Youtube, color: 'text-red-600', bgColor: 'bg-red-600/10', inputs: [{ id: 'url', label: 'Video Link', type: 'text', defaultValue: 'https://youtube.com/watch?v=dQw4w9WgXcQ' }], handler: async (p) => { const id = p.url.split('v=')[1]?.split('&')[0]; return { imageUrl: `https://img.youtube.com/vi/${id}/maxresdefault.jpg` }; } },
+            { id: 'word_counter', name: 'Word Counter', description: 'String analysis.', category: 'Productivity', icon: FileText, color: 'text-blue-500', bgColor: 'bg-blue-500/10', inputs: [{ id: 'text', label: 'Text', type: 'text', defaultValue: 'DEATH Node Active.' }], handler: async (p) => { return { words: p.text.trim().split(/\s+/).length, chars: p.text.length }; } },
+            { id: 'sci_calc', name: 'Scientific Calc', description: 'Math expressions.', category: 'Calculators', icon: Calculator, color: 'text-emerald-500', bgColor: 'bg-emerald-500/10', inputs: [{ id: 'expr', label: 'Expression', type: 'text', defaultValue: 'Math.PI * 2' }], handler: async (p) => { return { result: String(new Function(`return ${p.expr}`)()) }; } },
+            { id: 'loan_calc', name: 'Loan Calculator', description: 'Payment metrics.', category: 'Calculators', icon: DollarSign, color: 'text-green-500', bgColor: 'bg-green-500/10', inputs: [{ id: 'amount', label: 'Amount', type: 'number', defaultValue: '1000' }, { id: 'rate', label: 'Rate %', type: 'number', defaultValue: '5' }], handler: async (p) => { return { monthly: (p.amount * (p.rate/100) / 12).toFixed(2) }; } },
+            { id: 'bmi_calc', name: 'BMI Calculator', description: 'Health metrics.', category: 'Health', icon: Activity, color: 'text-teal-500', bgColor: 'bg-teal-500/10', inputs: [{ id: 'weight', label: 'Weight (kg)', type: 'number', defaultValue: '70' }, { id: 'height', label: 'Height (cm)', type: 'number', defaultValue: '175' }], handler: async (p) => { const h = p.height/100; return { bmi: (p.weight/(h*h)).toFixed(1) }; } },
+            { id: 'unit_conv', name: 'Unit Converter', description: 'Conversion module.', category: 'Utilities', icon: ArrowRightLeft, color: 'text-sky-500', bgColor: 'bg-sky-500/10', inputs: [{ id: 'val', label: 'Value', type: 'number', defaultValue: '1' }, { id: 'type', label: 'Type', type: 'select', defaultValue: 'Km to Miles', options: ['Km to Miles', 'Celsius to Fahrenheit'] }], handler: async (p) => { return { result: p.type.includes('Km') ? (p.val * 0.621).toFixed(2) : ((p.val * 9/5) + 32).toFixed(2) }; } },
+            { id: 'weather', name: 'Weather Node', description: 'Coordinate lookup.', category: 'Utilities', icon: Cloud, color: 'text-slate-400', bgColor: 'bg-slate-400/10', inputs: [{ id: 'lat', label: 'Lat', type: 'number', defaultValue: '51.5' }, { id: 'lon', label: 'Lon', type: 'number', defaultValue: '-0.12' }], handler: async (p) => { const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${p.lat}&longitude=${p.lon}&current_weather=true`); const d = await r.json(); return { temp: d.current_weather.temperature + "°C", wind: d.current_weather.windspeed + "km/h" }; } },
+            { id: 'qr_generator', name: 'QR Code Maker', description: 'Link generation.', category: 'Utilities', icon: QrCode, color: 'text-white', bgColor: 'bg-white/10', inputs: [{ id: 'data', label: 'Data', type: 'text', defaultValue: 'DEATH' }], handler: async (p) => { return { imageUrl: `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(p.data)}` }; } },
+            { id: 'ip_info', name: 'IP Lookup', description: 'Public node info.', category: 'Security', icon: Globe, color: 'text-cyan-500', bgColor: 'bg-cyan-500/10', inputs: [], handler: async () => { const r = await fetch('https://ipapi.co/json/'); return await r.json(); } },
+            { id: 'text_repeater', name: 'Text Repeater', description: 'Multiplier module.', category: 'Fun', icon: Copy, color: 'text-pink-500', bgColor: 'bg-pink-500/10', inputs: [{ id: 'text', label: 'Msg', type: 'text', defaultValue: 'HACK ' }, { id: 'count', label: 'Count', type: 'number', defaultValue: '10' }], handler: async (p) => { return { result: Array(parseInt(p.count)).fill(p.text).join('') }; } },
+            { id: 'dictionary', name: 'Dictionary', description: 'Word meanings.', category: 'Education', icon: Book, color: 'text-yellow-500', bgColor: 'bg-yellow-500/10', inputs: [{ id: 'word', label: 'Word', type: 'text', defaultValue: 'Innovation' }], handler: async (p) => { const r = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${p.word}`); const d = await r.json(); return { definition: d[0].meanings[0].definitions[0].definition }; } }
         ];
 
         const App = () => {
@@ -135,18 +129,16 @@
 
             return (
                 <div className="min-h-screen flex flex-col">
-                    {/* Navigation */}
                     <nav className="fixed top-6 left-0 w-full z-[100] flex justify-center px-4">
                         <div className="glass flex items-center px-4 py-2 rounded-full shadow-2xl gap-4 md:gap-8">
                             <button onClick={() => setView('portfolio')} className={`text-[10px] md:text-xs uppercase tracking-widest transition-all ${view === 'portfolio' ? 'text-red-500 font-bold' : 'text-white/40 hover:text-white'}`}>Root_Profile</button>
-                            <button onClick={() => setView('hub')} className={`text-[10px] md:text-xs uppercase tracking-widest transition-all ${view === 'hub' ? 'text-red-500 font-bold' : 'text-white/40 hover:text-white'}`}>Utility_Hub</button>
+                            <button onClick={() => setView('hub')} className={`text-[10px] md:text-xs uppercase tracking-widest transition-all ${view === 'hub' ? 'text-red-500 font-bold' : 'text-white/40 hover:text-white'}`}>Tool_Hub</button>
                             <a href="https://t.me/ilovehacking" className="bg-red-600 px-3 md:px-5 py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase hover:bg-red-700 transition-all shadow-lg shadow-red-900/20">Connect</a>
                         </div>
                     </nav>
 
                     {view === 'portfolio' ? (
                         <div className="animate__animated animate__fadeIn flex-1">
-                            {/* Hero */}
                             <header className="h-screen flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
                                 <div className="absolute inset-0 bg-red-900/5 pointer-events-none"></div>
                                 <div className="animate__animated animate__zoomIn relative z-10">
@@ -169,26 +161,31 @@
                                 </div>
                             </header>
 
-                            {/* Portfolio Content */}
                             <section className="py-32 px-6 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
                                 <div className="space-y-8">
-                                    <h2 className="text-4xl font-bold italic tracking-tighter"><span className="text-red-600">01.</span> THE_RESEARCHER</h2>
+                                    <h2 className="text-4xl font-bold italic tracking-tighter"><span className="text-red-600">01.</span> IDENTITY_LEAK</h2>
                                     <p className="text-white/50 text-lg leading-relaxed font-light">
-                                        I specialize in auditing decentralized networks and identifying critical flaws in cloud environments. 
-                                        By combining offensive scripting with defensive architecture, I build modules that stress-test the modern web.
+                                        Operating beyond traditional boundaries, I specialize in auditing decentralized networks and identifying critical flaws in modern infrastructures. 
+                                        By combining offensive scripting with defensive architecture, I build custom modules that stress-test the digital world.
                                     </p>
                                     <button onClick={() => setView('hub')} className="bg-white/5 border border-white/10 px-8 py-4 rounded-2xl flex items-center gap-3 hover:bg-red-600/10 hover:border-red-600 transition-all group font-bold tracking-widest text-xs">
                                         ACCESS HUB_MODULES <ChevronRight className="group-hover:translate-x-2 transition-transform" />
                                     </button>
                                 </div>
-                                <div className="glass p-10 rounded-[2.5rem] relative group border-white/5 hover:border-red-600/30 transition-all">
+                                <div className="glass p-10 rounded-[2.5rem] relative group border-white/5 hover:border-red-600/30 transition-all shadow-2xl">
                                     <div className="absolute -top-4 -left-4 bg-red-600 p-2 rounded-xl shadow-xl shadow-red-900/40"><Terminal size={20}/></div>
-                                    <h3 className="text-xs uppercase tracking-[0.4em] text-white/20 mb-10 font-black">CORE_SKILL_INDEX</h3>
+                                    <h3 className="text-xs uppercase tracking-[0.4em] text-white/20 mb-10 font-black">SYSTEM_STATS</h3>
                                     <div className="space-y-4">
-                                        {['Burp Suite', 'Metasploit', 'Kali Linux', 'Python/Go lang', 'Exploit Dev'].map(s => (
-                                            <div key={s} className="flex justify-between border-b border-white/5 pb-3 items-center">
-                                                <span className="text-white/80 font-mono text-sm tracking-tighter">{s}</span>
-                                                <span className="text-green-500 font-mono text-[10px] bg-green-500/10 px-2 py-0.5 rounded">STATUS: ELITE</span>
+                                        {[
+                                            { s: 'Burp Suite', st: 'ELITE' },
+                                            { s: 'Metasploit', st: 'ADVANCED' },
+                                            { s: 'Kali Linux', st: 'NATIVE' },
+                                            { s: 'Python/Go lang', st: 'EXPERT' },
+                                            { s: 'Exploit Dev', st: 'ACTIVE' }
+                                        ].map(item => (
+                                            <div key={item.s} className="flex justify-between border-b border-white/5 pb-3 items-center">
+                                                <span className="text-white/80 font-mono text-sm tracking-tighter">{item.s}</span>
+                                                <span className="text-green-500 font-mono text-[10px] bg-green-500/10 px-2 py-0.5 rounded tracking-tighter">STATUS: {item.st}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -196,118 +193,87 @@
                             </section>
                         </div>
                     ) : (
-                        /* Utility Hub Interface */
-                        <div className="pt-24 flex-1 flex flex-col md:flex-row animate__animated animate__fadeIn overflow-hidden h-screen">
+                        <div className="pt-24 flex-1 flex flex-col md:flex-row animate__animated animate__fadeIn h-screen overflow-hidden">
                             <aside className="w-full md:w-80 glass border-y-0 border-l-0 p-6 flex flex-col h-full overflow-hidden">
                                 <div className="mb-6">
-                                    <h2 className="text-2xl font-black flex items-center gap-3 mb-6 tracking-tighter"><Terminal className="text-red-600" /> HUB_v1.0</h2>
+                                    <h2 className="text-2xl font-black flex items-center gap-3 mb-6 tracking-tighter uppercase"><Terminal className="text-red-600" /> Hub_v1.0</h2>
                                     <div className="relative">
                                         <Search size={14} className="absolute left-4 top-4 text-white/20"/>
                                         <input 
-                                            placeholder="Search tools or categories..." 
-                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-xs outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-all"
+                                            placeholder="Search tools..." 
+                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-xs outline-none focus:border-red-600 transition-all"
                                             onChange={(e) => setSearch(e.target.value)}
                                         />
                                     </div>
                                 </div>
                                 <div className="flex-1 space-y-2 overflow-y-auto pr-2 custom-scrollbar">
                                     {filteredTools.map(t => (
-                                        <button 
-                                            key={t.id} 
-                                            onClick={() => loadTool(t)}
-                                            className={`w-full flex items-center gap-4 p-4 rounded-2xl border transition-all ${selectedTool?.id === t.id ? 'glass border-red-600/50 bg-red-600/5 shadow-inner shadow-red-900/10' : 'border-transparent hover:bg-white/5'}`}
-                                        >
-                                            <div className={`p-2.5 rounded-xl ${t.bgColor} ${t.color} shadow-lg shadow-black/20`}><t.icon size={18}/></div>
+                                        <button key={t.id} onClick={() => loadTool(t)} className={`w-full flex items-center gap-4 p-4 rounded-2xl border transition-all ${selectedTool?.id === t.id ? 'bg-red-600/10 border-red-600/50 shadow-inner' : 'border-transparent hover:bg-white/5'}`}>
+                                            <div className={`p-2.5 rounded-xl ${t.bgColor} ${t.color}`}><t.icon size={18}/></div>
                                             <div className="text-left">
                                                 <p className="text-xs font-black text-white leading-none mb-1">{t.name}</p>
                                                 <p className="text-[9px] text-white/20 uppercase tracking-widest">{t.category}</p>
                                             </div>
                                         </button>
                                     ))}
-                                    {filteredTools.length === 0 && <p className="text-center text-[10px] text-white/20 mt-10">NO_MODULES_FOUND</p>}
                                 </div>
                                 <div className="pt-6 border-t border-white/5 mt-4 space-y-3">
-                                     <a href="https://whatsapp.com/channel/0029VaCBM8AKGGG9l6g6Lz0b" className="flex items-center gap-3 text-[10px] text-white/30 hover:text-green-500 transition-colors uppercase font-bold tracking-widest"><MessageCircle size={14}/> JOIN_WHATSAPP</a>
-                                     <a href="https://t.me/udemydeath" className="flex items-center gap-3 text-[10px] text-white/30 hover:text-blue-500 transition-colors uppercase font-bold tracking-widest"><Send size={14}/> INTEL_CHANNEL</a>
+                                     <a href="https://whatsapp.com/channel/0029VaCBM8AKGGG9l6g6Lz0b" className="flex items-center gap-3 text-[10px] text-white/30 hover:text-green-500 transition-colors uppercase font-bold tracking-widest"><MessageCircle size={14}/> JOIN_CHANNEL</a>
+                                     <a href="https://t.me/udemydeath" className="flex items-center gap-3 text-[10px] text-white/30 hover:text-blue-500 transition-colors uppercase font-bold tracking-widest"><Send size={14}/> INTEL_FEED</a>
                                 </div>
                             </aside>
 
                             <main className="flex-1 p-6 md:p-12 overflow-y-auto bg-black/40">
                                 {selectedTool ? (
-                                    <div className="max-w-xl mx-auto glass p-8 md:p-14 rounded-[3.5rem] animate__animated animate__slideInUp border-white/5 shadow-2xl shadow-black/80">
+                                    <div className="max-w-xl mx-auto glass p-8 md:p-14 rounded-[3.5rem] animate__animated animate__slideInUp shadow-2xl">
                                         <div className="border-b border-white/5 pb-8 mb-10">
                                             <div className="flex items-center gap-4 mb-3">
                                                 <div className={`p-3 rounded-2xl ${selectedTool.bgColor} ${selectedTool.color}`}><selectedTool.icon size={24}/></div>
                                                 <h3 className="text-3xl font-black uppercase font-bebas tracking-[0.1em] text-white">{selectedTool.name}</h3>
                                             </div>
-                                            <p className="text-white/30 text-sm italic font-light">{selectedTool.description}</p>
+                                            <p className="text-white/30 text-sm italic">{selectedTool.description}</p>
                                         </div>
-
                                         <div className="space-y-8">
                                             {selectedTool.inputs.map(input => (
                                                 <div key={input.id}>
                                                     <label className="text-[10px] uppercase tracking-[0.3em] text-white/20 mb-3 block font-black">{input.label}</label>
-                                                    {input.type === 'select' ? (
-                                                        <select 
-                                                            className="w-full bg-black/80 border border-white/10 p-5 rounded-2xl text-white outline-none focus:border-red-600 transition-all appearance-none"
-                                                            onChange={e => setInputValues({...inputValues, [input.id]: e.target.value})}
-                                                        >
-                                                            {input.options.map(o => <option key={o} value={o}>{o}</option>)}
-                                                        </select>
-                                                    ) : (
-                                                        <input 
-                                                            type={input.type}
-                                                            className="w-full bg-black/80 border border-white/10 p-5 rounded-2xl text-white outline-none focus:border-red-600 transition-all placeholder:text-white/5"
-                                                            placeholder={`Enter ${input.label}...`}
-                                                            value={inputValues[input.id]}
-                                                            onChange={e => setInputValues({...inputValues, [input.id]: e.target.value})}
-                                                        />
-                                                    )}
+                                                    <input 
+                                                        type={input.type}
+                                                        className="w-full bg-black/80 border border-white/10 p-5 rounded-2xl text-white outline-none focus:border-red-600 transition-all"
+                                                        value={inputValues[input.id]}
+                                                        onChange={e => setInputValues({...inputValues, [input.id]: e.target.value})}
+                                                    />
                                                 </div>
                                             ))}
                                             <button 
                                                 onClick={async () => {
                                                     setLoading(true);
                                                     try { setToolResult(await selectedTool.handler(inputValues)); }
-                                                    catch(e) { alert("EXECUTION_FAILED: Check input syntax."); }
+                                                    catch(e) { alert("EXECUTION_FAILED: Analysis error."); }
                                                     setLoading(false);
                                                 }}
-                                                className="w-full py-6 bg-red-600 rounded-[1.5rem] font-black text-white tracking-[0.2em] text-sm hover:bg-red-700 transition-all flex items-center justify-center gap-3 shadow-2xl shadow-red-900/30 active:scale-[0.98]"
+                                                className="w-full py-6 bg-red-600 rounded-[1.5rem] font-black text-white tracking-[0.2em] text-sm hover:bg-red-700 transition-all flex items-center justify-center gap-3 shadow-2xl active:scale-[0.98]"
                                             >
-                                                {loading ? <RefreshCw className="animate-spin" size={18}/> : <ShieldCheck size={18}/>} 
-                                                RUN_MODULE
+                                                {loading ? <RefreshCw className="animate-spin" size={18}/> : <ShieldCheck size={18}/>} RUN_MODULE
                                             </button>
                                         </div>
-
                                         {toolResult && (
-                                            <div className="mt-12 p-8 bg-white/[0.02] rounded-[2.5rem] border border-white/5 animate__animated animate__fadeIn shadow-inner">
-                                                <div className="flex items-center gap-2 mb-6">
-                                                    <div className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse"></div>
-                                                    <p className="text-[10px] text-white/20 uppercase tracking-[0.3em] font-black">LOG_OUTPUT_STREAM</p>
-                                                </div>
+                                            <div className="mt-12 p-8 bg-white/[0.02] rounded-[2.5rem] border border-white/5 animate__animated animate__fadeIn">
+                                                <p className="text-[10px] text-white/20 uppercase tracking-[0.3em] font-black mb-6">OUTPUT_STREAM</p>
                                                 {toolResult.imageUrl ? (
                                                     <div className="flex flex-col items-center">
                                                         <div className="p-3 bg-white rounded-2xl shadow-2xl">
-                                                            <img src={toolResult.imageUrl} className="rounded-lg" alt="Generated Output" />
+                                                            <img src={toolResult.imageUrl} className="rounded-lg" alt="Output" />
                                                         </div>
-                                                        <p className="text-[9px] mt-4 text-white/20 tracking-widest uppercase">Checksum: Verified</p>
+                                                        <p className="text-[9px] mt-4 text-white/20 tracking-widest uppercase italic">Generated by Node</p>
                                                     </div>
                                                 ) : (
                                                     <div className="space-y-3">
                                                         {Object.entries(toolResult).map(([k,v]) => (
-                                                            <div key={k} className="flex justify-between items-center bg-black/60 p-5 rounded-2xl border border-white/[0.03] group">
+                                                            <div key={k} className="flex justify-between items-center bg-black/60 p-5 rounded-2xl border border-white/[0.03]">
                                                                 <span className="text-[10px] uppercase text-red-600 font-black tracking-widest">{k}</span>
                                                                 <span className="text-white font-mono text-sm break-all text-right ml-6 flex-1">{String(v)}</span>
-                                                                <button 
-                                                                    onClick={() => {
-                                                                        navigator.clipboard.writeText(String(v));
-                                                                        // Small visual feedback could go here
-                                                                    }} 
-                                                                    className="text-white/10 hover:text-white ml-4 p-2 transition-colors"
-                                                                    title="Copy to clipboard"
-                                                                >
-                                                                    <Copy size={14}/>
-                                                                </button>
+                                                                <button onClick={() => navigator.clipboard.writeText(String(v))} className="text-white/10 hover:text-white ml-4 transition-colors"><Copy size={14}/></button>
                                                             </div>
                                                         ))}
                                                     </div>
@@ -326,21 +292,16 @@
                         </div>
                     )}
 
-                    {/* Global Footer */}
-                    <footer className="py-24 px-6 border-t border-white/5 bg-black relative z-50">
+                    <footer className="py-24 px-6 border-t border-white/5 bg-black">
                         <div className="max-w-4xl mx-auto text-center space-y-16">
-                            <h2 className="text-5xl md:text-9xl font-black text-white font-bebas tracking-tighter opacity-80">HACK THE PLANET 🌍</h2>
-                            <div className="flex flex-wrap justify-center gap-10 md:gap-16">
-                                <a title="Email" href="mailto:whitehat09890@gmail.com" className="text-white/20 hover:text-red-500 transition-all scale-[1.8]"><Mail /></a>
-                                <a title="Telegram" href="https://t.me/ilovehacking" className="text-white/20 hover:text-blue-500 transition-all scale-[1.8]"><Send /></a>
-                                <a title="Support" href="https://buymeacoffee.com/D3ATH" className="text-white/20 hover:text-yellow-600 transition-all scale-[1.8]"><Coffee /></a>
-                                <a title="WhatsApp" href="https://whatsapp.com/channel/0029VaCBM8AKGGG9l6g6Lz0b" className="text-white/20 hover:text-green-500 transition-all scale-[1.8]"><MessageCircle /></a>
-                                <a title="GitHub" href="https://github.com/Death112233" className="text-white/20 hover:text-white transition-all scale-[1.8]"><X /></a>
+                            <h2 className="text-5xl md:text-9xl font-black text-white font-bebas tracking-tighter opacity-80 uppercase">Hack the Planet 🌍</h2>
+                            <div className="flex flex-wrap justify-center gap-10">
+                                <a title="Email" href="mailto:whitehat09890@gmail.com" className="text-white/20 hover:text-red-500 scale-[1.8] transition-all"><Mail /></a>
+                                <a title="Telegram" href="https://t.me/ilovehacking" className="text-white/20 hover:text-blue-500 scale-[1.8] transition-all"><Send /></a>
+                                <a title="GitHub" href="https://github.com/Death112233" className="text-white/20 hover:text-white scale-[1.8] transition-all"><X /></a>
+                                <a title="Support" href="https://buymeacoffee.com/D3ATH" className="text-white/20 hover:text-yellow-600 scale-[1.8] transition-all"><Coffee /></a>
                             </div>
-                            <div className="pt-16 space-y-3 opacity-20 text-[9px] tracking-[0.5em] uppercase font-bold">
-                                <p>Encrypted Session // Operator: DEATH // 0xDEATH_NODE</p>
-                                <p>Zero Logs Policy // Stay Anonymous // &copy; 2025</p>
-                            </div>
+                            <p className="opacity-20 text-[9px] tracking-[0.5em] uppercase font-bold">Encrypted Node // Operator: DEATH // No logs policy</p>
                         </div>
                     </footer>
                 </div>
