@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Optimization -->
+    <title>DEATH 💀 | Security Researcher & Utility Developer</title>
+    <meta name="description" content="Professional research portfolio and utility hub of DEATH. Expert in Cybersecurity, Bug Hunting, and Red Teaming. Access 14+ essential security and productivity tools.">
+    <meta name="keywords" content="Cybersecurity, Bug Hunter, Red Teamer, Security Tools, Pentesting, DEATH, Exploit Research, Web Security">
+    <meta name="author" content="DEATH">
+    <meta name="robots" content="index, follow">
+    <meta name="google-site-verification" content="GAmBktjMblQnBrOIo3dD1JH9PnVURdr4HC9w6dCWtWo" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="DEATH 💀 | Security Node">
+    <meta property="og:description" content="Mastering the digital shadows. Research, tools, and exploits.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Bebas+Neue&family=Architects+Daughter&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18.2.0",
+        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+        "lucide-react": "https://esm.sh/lucide-react@0.263.1"
+      }
+    }
+    </script>
+
+    <style>
+        body { background-color: #000; color: #ededed; overflow-x: hidden; }
+        .hacking-grid { background-image: radial-gradient(rgba(255, 0, 0, 0.07) 1px, transparent 1px); background-size: 30px 30px; }
+        .glass { background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(14px); border: 1px solid rgba(255, 0, 0, 0.15); }
+        .text-gradient-red { background: linear-gradient(to right, #ff0000, #991b1b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #991b1b; border-radius: 10px; }
+        
+        @keyframes scanline { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+        .scanline::after {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(255,0,0,0.03), transparent);
+            animation: scanline 10s linear infinite; pointer-events: none;
+        }
+    </style>
+</head>
+<body class="font-outfit antialiased hacking-grid scanline">
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+        import React, { useState, useEffect, useMemo } from 'react'; // Added useMemo here to fix the error
+        import { createRoot } from 'react-dom/client';
+        import { 
+            Terminal, ShieldAlert, Bug, Code, MapPin, Layers, ChevronDown, 
+            Search, Menu, X, ChevronRight, Calculator, Calendar, 
+            DollarSign, Clock, Activity, Ruler, TrendingUp, ArrowRightLeft, 
+            Copy, FileText, Lock, Youtube, Cloud, QrCode, Globe, Book, 
+            MessageCircle, Send, Tag, RefreshCw, ShieldCheck, AlertCircle, 
+            ExternalLink, Coffee, Mail, User, Shield, Info
+        } from 'lucide-react';
+
+        // --- Core Helpers ---
+        const safeMathEval = (str) => {
+            if (!/^[0-9+\-*/().,\s%MathPIEcosinqrtlog]+$/.test(str)) throw new Error("Invalid characters");
+            try { return String(new Function(`return ${str}`)()); } catch (e) { return "Error"; }
+        };
+
+        // --- Full Tool Configuration (14 Tools Integrated) ---
+        const tools = [
+            { id: 'discount_calc', name: 'Discount Calculator', description: 'Quick pricing deductions.', category: 'Essentials', icon: Tag, color: 'text-rose-500', bgColor: 'bg-rose-500/10', inputs: [{ id: 'price', label: 'Price', type: 'number', defaultValue: '100' }, { id: 'discount', label: 'Discount %', type: 'number', defaultValue: '25' }], handler: async (p) => { const s = p.price * (p.discount/100); return { final: (p.price - s).toFixed(2), saved: s.toFixed(2) }; } },
+            { id: 'password_gen', name: 'Password Generator', description: 'High-entropy strings for security.', category: 'Security', icon: Lock, color: 'text-indigo-500', bgColor: 'bg-indigo-500/10', inputs: [{ id: 'length', label: 'Length', type: 'number', defaultValue: '24' }, { id: 'symbols', label: 'Symbols?', type: 'select', defaultValue: 'Yes', options: ['Yes', 'No'] }], handler: async (p) => { let c = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; if(p.symbols === 'Yes') c += "!@#$%^&*()_+~"; let r = ""; for(let i=0; i<p.length; i++) r += c.charAt(Math.floor(Math.random()*c.length)); return { password: r }; } },
+            { id: 'age_calc', name: 'Age Calculator', description: 'Chronological lookup.', category: 'Essentials', icon: Calendar, color: 'text-orange-500', bgColor: 'bg-orange-500/10', inputs: [{ id: 'dob', label: 'DOB (YYYY-MM-DD)', type: 'text', defaultValue: '2000-01-01' }], handler: async (p) => { const b = new Date(p.dob); const t = new Date(); let y = t.getFullYear() - b.getFullYear(); return { years: String(y), status: "Calculated" }; } },
+            { id: 'yt_thumb', name: 'YT Thumbnail', description: 'Fetch video covers.', category: 'Content', icon: Youtube, color: 'text-red-600', bgColor: 'bg-red-600/10', inputs: [{ id: 'url', label: 'Video Link', type: 'text', defaultValue: 'https://youtube.com/watch?v=dQw4w9WgXcQ' }], handler: async (p) => { const id = p.url.split('v=')[1]?.split('&')[0]; return { imageUrl: `https://img.youtube.com/vi/${id}/maxresdefault.jpg` }; } },
+            { id: 'word_counter', name: 'Word Counter', description: 'String analysis.', category: 'Productivity', icon: FileText, color: 'text-blue-500', bgColor: 'bg-blue-500/10', inputs: [{ id: 'text', label: 'Text', type: 'text', defaultValue: 'DEATH Security Research Node.' }], handler: async (p) => { return { words: p.text.trim().split(/\s+/).length, chars: p.text.length }; } },
+            { id: 'sci_calc', name: 'Scientific Calc', description: 'Math expressions evaluation.', category: 'Calculators', icon: Calculator, color: 'text-emerald-500', bgColor: 'bg-emerald-500/10', inputs: [{ id: 'expr', label: 'Expression', type: 'text', defaultValue: 'Math.sqrt(256) * 2' }], handler: async (p) => { return { result: safeMathEval(p.expr) }; } },
+            { id: 'loan_calc', name: 'Loan Calculator', description: 'Payment metrics.', category: 'Calculators', icon: DollarSign, color: 'text-green-500', bgColor: 'bg-green-500/10', inputs: [{ id: 'amount', label: 'Amount', type: 'number', defaultValue: '1000' }, { id: 'rate', label: 'Rate %', type: 'number', defaultValue: '5' }], handler: async (p) => { return { monthly: (p.amount * (p.rate/100) / 12).toFixed(2) }; } },
+            { id: 'bmi_calc', name: 'BMI Calculator', description: 'Physical health index.', category: 'Health', icon: Activity, color: 'text-teal-500', bgColor: 'bg-teal-500/10', inputs: [{ id: 'weight', label: 'Weight (kg)', type: 'number', defaultValue: '70' }, { id: 'height', label: 'Height (cm)', type: 'number', defaultValue: '175' }], handler: async (p) => { const h = p.height/100; return { bmi: (p.weight/(h*h)).toFixed(1) }; } },
+            { id: 'unit_conv', name: 'Unit Converter', description: 'Distance/Weight conversion.', category: 'Utilities', icon: ArrowRightLeft, color: 'text-sky-500', bgColor: 'bg-sky-500/10', inputs: [{ id: 'val', label: 'Value', type: 'number', defaultValue: '1' }, { id: 'type', label: 'Type', type: 'select', defaultValue: 'Km to Miles', options: ['Km to Miles', 'Celsius to Fahrenheit'] }], handler: async (p) => { return { result: p.type.includes('Km') ? (p.val * 0.621).toFixed(2) : ((p.val * 9/5) + 32).toFixed(2) }; } },
+            { id: 'weather', name: 'Weather Node', description: 'Global coordinate weather.', category: 'Utilities', icon: Cloud, color: 'text-slate-400', bgColor: 'bg-slate-400/10', inputs: [{ id: 'lat', label: 'Lat', type: 'number', defaultValue: '51.5' }, { id: 'lon', label: 'Lon', type: 'number', defaultValue: '-0.12' }], handler: async (p) => { const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${p.lat}&longitude=${p.lon}&current_weather=true`); const d = await r.json(); return { temp: d.current_weather.temperature + "°C", wind: d.current_weather.windspeed + "km/h" }; } },
+            { id: 'qr_generator', name: 'QR Code Maker', description: 'Link and text QR generation.', category: 'Utilities', icon: QrCode, color: 'text-white', bgColor: 'bg-white/10', inputs: [{ id: 'data', label: 'Data', type: 'text', defaultValue: 'DEATH_NODE' }], handler: async (p) => { return { imageUrl: `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(p.data)}` }; } },
+            { id: 'ip_info', name: 'IP Lookup', description: 'Public node information.', category: 'Security', icon: Globe, color: 'text-cyan-500', bgColor: 'bg-cyan-500/10', inputs: [], handler: async () => { const r = await fetch('https://ipapi.co/json/'); return await r.json(); } },
+            { id: 'text_repeater', name: 'Text Repeater', description: 'String multiplier module.', category: 'Fun', icon: Copy, color: 'text-pink-500', bgColor: 'bg-pink-500/10', inputs: [{ id: 'text', label: 'Msg', type: 'text', defaultValue: 'HACK ' }, { id: 'count', label: 'Count', type: 'number', defaultValue: '10' }], handler: async (p) => { return { result: Array(parseInt(p.count)).fill(p.text).join('') }; } },
+            { id: 'dictionary', name: 'Dictionary', description: 'Semantic word lookup.', category: 'Education', icon: Book, color: 'text-yellow-500', bgColor: 'bg-yellow-500/10', inputs: [{ id: 'word', label: 'Word', type: 'text', defaultValue: 'Encryption' }], handler: async (p) => { const r = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${p.word}`); const d = await r.json(); return { definition: d[0].meanings[0].definitions[0].definition }; } }
+        ];
+
+        const App = () => {
+            const [view, setView] = useState('portfolio');
+            const [selectedTool, setSelectedTool] = useState(null);
+            const [inputValues, setInputValues] = useState({});
+            const [toolResult, setToolResult] = useState(null);
+            const [loading, setLoading] = useState(false);
+            const [search, setSearch] = useState('');
+
+            // useMemo used here correctly with the fixed import
+            const filteredTools = useMemo(() => 
+                tools.filter(t => t.name.toLowerCase().includes(search.toLowerCase())), 
+            [search]);
+
+            const loadTool = (tool) => {
+                setSelectedTool(tool);
+                setToolResult(null);
+                const defs = {};
+                tool.inputs.forEach(i => defs[i.id] = i.defaultValue);
+                setInputValues(defs);
+            };
+
+            return (
+                <div className="min-h-screen">
+                    {/* Navigation Bar */}
+                    <nav className="fixed top-6 left-0 w-full z-[100] flex justify-center px-4">
+                        <div className="glass flex items-center px-4 py-2 rounded-full shadow-2xl gap-6">
+                            <button onClick={() => setView('portfolio')} className={`text-xs uppercase tracking-widest ${view === 'portfolio' ? 'text-red-500 font-bold' : 'text-white/40'}`}>Profile</button>
+                            <button onClick={() => setView('hub')} className={`text-xs uppercase tracking-widest ${view === 'hub' ? 'text-red-500 font-bold' : 'text-white/40'}`}>Tool_Hub</button>
+                            <a href="https://t.me/ilovehacking" className="bg-red-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase hover:bg-red-700 transition-all">Connect</a>
+                        </div>
+                    </nav>
+
+                    {view === 'portfolio' ? (
+                        <div className="animate__animated animate__fadeIn">
+                            {/* Hero Section */}
+                            <header className="h-screen flex flex-col items-center justify-center text-center relative overflow-hidden">
+                                <p class="font-architects text-blue-400 text-xl md:text-2xl mb-4 italic">Initializing Session...</p>
+                                <h1 className="text-[18vw] md:text-[14vw] font-black uppercase leading-none tracking-tighter text-white">DEATH</h1>
+                                <p className="text-sm md:text-base tracking-[0.5em] uppercase text-white/30 mt-6">Global Security Researcher & Developer</p>
+                                
+                                <div className="absolute bottom-12 w-full max-w-6xl flex justify-between items-end px-10 text-[10px] uppercase tracking-widest text-white/40">
+                                    <div className="text-left"><MapPin size={14} className="mb-1 text-red-600"/>Node: <b class="text-white">Edge of the Void</b></div>
+                                    <div className="text-right"><Layers size={14} className="mb-1 text-blue-600 ml-auto"/>Specialty: <b class="text-white">Red Teaming</b></div>
+                                </div>
+                            </header>
+
+                            {/* About Section */}
+                            <section className="py-32 px-6 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
+                                <div className="space-y-8">
+                                    <h2 className="text-4xl font-bold italic"><span class="text-red-600">01.</span> THE_RESEARCHER</h2>
+                                    <p className="text-white/60 text-lg leading-relaxed font-light">
+                                        Operating beyond traditional boundaries, I specialize in uncovering critical vulnerabilities in modern infrastructure. 
+                                        I build defensive modules and offensive toolsets to stress-test the digital world.
+                                    </p>
+                                    <button onClick={() => setView('hub')} className="bg-white/5 border border-white/10 px-8 py-4 rounded-2xl flex items-center gap-3 hover:bg-red-600/10 hover:border-red-600 transition-all group">
+                                        OPEN UTILITY HUB <ChevronRight className="group-hover:translate-x-2 transition-transform"/>
+                                    </button>
+                                </div>
+                                <div className="glass p-10 rounded-[2.5rem] border-red-900/30">
+                                    <h3 className="text-xs uppercase tracking-[0.3em] text-red-500 mb-8">Skill_Index</h3>
+                                    <div className="space-y-4">
+                                        {['Burp Suite', 'Metasploit', 'Kali/Parrot', 'Exploit Dev', 'OSINT'].map(s => (
+                                            <div key={s} className="flex justify-between border-b border-white/5 pb-2">
+                                                <span class="text-white font-mono">{s}</span>
+                                                <span class="text-white/20">Lvl_99</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    ) : (
+                        /* Tool Hub Interface */
+                        <div className="pt-24 min-h-screen flex flex-col md:flex-row animate__animated animate__fadeIn">
+                            <aside className="w-full md:w-80 glass border-y-0 border-l-0 p-6 flex flex-col h-screen sticky top-0 overflow-hidden">
+                                <div className="mb-8">
+                                    <h2 className="text-2xl font-bold flex items-center gap-2 mb-4"><Terminal class="text-red-600"/> HUB_v1</h2>
+                                    <div className="relative">
+                                        <Search size={14} className="absolute left-3 top-3.5 text-white/20"/>
+                                        <input 
+                                            placeholder="Search tools..." 
+                                            className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-xs outline-none focus:border-red-600 transition-all"
+                                            onChange={(e) => setSearch(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="flex-1 space-y-2 overflow-y-auto pr-2 custom-scrollbar">
+                                    {filteredTools.map(t => (
+                                        <button 
+                                            key={t.id} 
+                                            onClick={() => loadTool(t)}
+                                            className={`w-full flex items-center gap-3 p-3 rounded-xl border transition-all ${selectedTool?.id === t.id ? 'bg-red-600/10 border-red-600/50' : 'border-transparent hover:bg-white/5'}`}
+                                        >
+                                            <div className={`p-2 rounded-lg ${t.bgColor} ${t.color}`}><t.icon size={16}/></div>
+                                            <div className="text-left"><p class="text-xs font-bold text-white">{t.name}</p><p class="text-[9px] text-white/30 uppercase tracking-tighter">{t.category}</p></div>
+                                        </button>
+                                    ))}
+                                </div>
+                                <div className="pt-6 border-t border-white/10 mt-4 space-y-2">
+                                     <a href="https://whatsapp.com/channel/0029VaCBM8AKGGG9l6g6Lz0b" className="flex items-center gap-2 text-[10px] text-white/40 hover:text-green-500 transition-colors uppercase"><MessageCircle size={12}/> Join Channel</a>
+                                     <a href="https://t.me/udemydeath" className="flex items-center gap-2 text-[10px] text-white/40 hover:text-blue-500 transition-colors uppercase"><Send size={12}/> Telegram Intel</a>
+                                </div>
+                            </aside>
+
+                            <main className="flex-1 p-6 md:p-12 overflow-y-auto">
+                                {selectedTool ? (
+                                    <div className="max-w-xl mx-auto glass p-8 md:p-12 rounded-[3rem] animate__animated animate__slideInUp">
+                                        <div className="border-b border-white/10 pb-6 mb-8 text-center md:text-left">
+                                            <h3 className="text-3xl font-bold mb-2 uppercase font-bebas tracking-widest">{selectedTool.name}</h3>
+                                            <p className="text-white/40 text-sm italic">{selectedTool.description}</p>
+                                        </div>
+
+                                        <div className="space-y-6">
+                                            {selectedTool.inputs.map(input => (
+                                                <div key={input.id}>
+                                                    <label class="text-[10px] uppercase tracking-widest text-white/20 mb-2 block">{input.label}</label>
+                                                    {input.type === 'select' ? (
+                                                        <select 
+                                                            className="w-full bg-black border border-white/10 p-4 rounded-2xl text-white outline-none focus:border-red-600"
+                                                            onChange={e => setInputValues({...inputValues, [input.id]: e.target.value})}
+                                                        >
+                                                            {input.options.map(o => <option key={o}>{o}</option>)}
+                                                        </select>
+                                                    ) : (
+                                                        <input 
+                                                            type={input.type}
+                                                            className="w-full bg-black border border-white/10 p-4 rounded-2xl text-white outline-none focus:border-red-600"
+                                                            value={inputValues[input.id]}
+                                                            onChange={e => setInputValues({...inputValues, [input.id]: e.target.value})}
+                                                        />
+                                                    )}
+                                                </div>
+                                            ))}
+                                            <button 
+                                                onClick={async () => {
+                                                    setLoading(true);
+                                                    try { setToolResult(await selectedTool.handler(inputValues)); }
+                                                    catch(e) { alert("Execution Failed"); }
+                                                    setLoading(false);
+                                                }}
+                                                className="w-full py-5 bg-red-600 rounded-2xl font-bold text-white hover:bg-red-700 transition-all flex items-center justify-center gap-2 shadow-xl shadow-red-900/20"
+                                            >
+                                                {loading ? <RefreshCw className="animate-spin"/> : <ShieldCheck/>} EXECUTE_MODULE
+                                            </button>
+                                        </div>
+
+                                        {toolResult && (
+                                            <div className="mt-8 p-6 bg-white/5 rounded-3xl border border-white/10 animate__animated animate__fadeIn">
+                                                <p class="text-[10px] text-white/20 uppercase tracking-[0.2em] mb-4">Terminal Output</p>
+                                                {toolResult.imageUrl ? (
+                                                    <div className="flex flex-col items-center">
+                                                        <img src={toolResult.imageUrl} className="rounded-xl p-2 bg-white" />
+                                                        <p class="text-[10px] mt-2 text-white/20">Scan Complete</p>
+                                                    </div>
+                                                ) : (
+                                                    <div className="space-y-2">
+                                                        {Object.entries(toolResult).map(([k,v]) => (
+                                                            <div key={k} className="flex justify-between items-center bg-black/50 p-4 rounded-xl border border-white/5">
+                                                                <span class="text-xs uppercase text-red-500 font-mono">{k}</span>
+                                                                <span class="text-white font-mono break-all text-right ml-4">{String(v)}</span>
+                                                                <button onClick={() => navigator.clipboard.writeText(String(v))} class="text-white/20 hover:text-white ml-3 transition-colors">
+                                                                    <Copy size={12}/>
+                                                                </button>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                ) : (
+                                    <div className="h-full flex flex-col items-center justify-center opacity-10 text-center select-none pt-20">
+                                        <Shield size={120} className="mb-4"/>
+                                        <h3 className="text-4xl font-black">AWAITING_INPUT</h3>
+                                        <p class="mt-2 tracking-widest uppercase text-xs">Select module from left panel</p>
+                                    </div>
+                                )}
+                            </main>
+                        </div>
+                    )}
+
+                    {/* Footer Section */}
+                    <footer className="py-24 px-6 border-t border-white/5 bg-black relative z-50">
+                        <div className="max-w-4xl mx-auto text-center space-y-12">
+                            <h2 className="text-5xl md:text-8xl font-bold text-white font-bebas tracking-tighter">HACK THE PLANET 🌍</h2>
+                            <div className="flex flex-wrap justify-center gap-10">
+                                <a title="Email" href="mailto:whitehat09890@gmail.com" className="hover:text-red-500 transition-all scale-125 md:scale-150"><Mail /></a>
+                                <a title="Telegram" href="https://t.me/ilovehacking" className="hover:text-blue-500 transition-all scale-125 md:scale-150"><Send /></a>
+                                <a title="Support" href="https://buymeacoffee.com/D3ATH" className="hover:text-yellow-600 transition-all scale-125 md:scale-150"><Coffee /></a>
+                                <a title="WhatsApp" href="https://whatsapp.com/channel/0029VaCBM8AKGGG9l6g6Lz0b" className="hover:text-green-500 transition-all scale-125 md:scale-150"><MessageCircle /></a>
+                                <a title="GitHub" href="https://github.com/Death112233" className="hover:text-white transition-all scale-125 md:scale-150"><X /></a>
+                            </div>
+                            <div className="pt-10 space-y-2 opacity-20 text-[9px] tracking-[0.5em] uppercase">
+                                <p>Encrypted Session // Operator: DEATH</p>
+                                <p>No Logs Saved // Stay Anonymous // 2025</p>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
